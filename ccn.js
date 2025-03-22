@@ -9,9 +9,9 @@ const drinks = [
     { name: "Pineapple Paradise", image: "https://github.com/shaeigw/christian-cocktail-night/blob/main/PineappleParadise.jpg", recipe: "30 ml Pineapple Syrup\n60 ml Mango Juice\n40 ml Pink Guava Juice\n10 ml Fresh Lime Juice\nSoda Water\nGarnish: Mint sprig and a pineapple slice (or lime wedge)" },
     { name: "Man(go) on Fire", image: "https://github.com/shaeigw/christian-cocktail-night/blob/main/MangoOnFire.jpg", recipe: "50 ml Mango Juice\n50 ml Strawberry Juice\n20 ml Lemonade Mix Syrup\n10 ml Grenadine (last)\nSoda Water\nGarnish: Frozen berries and lime wedge" },
     { name: "Man 'Go Dream (Joseph Edition)", image: "https://github.com/shaeigw/christian-cocktail-night/blob/main/ManGoDream.jpg", recipe: "70 ml Mango Juice\n30 ml Pineapple Syrup\n15 ml Blue Curacao Syrup\n10 ml Fresh Lime Juice\nSoda Water to fill up to 400 ml\nGarnish: Pineapple slice and fresh mint" },
-    { name: "Amazing Guava Grace", image: "images/amazingguavagrace.jpg", recipe: "60 ml Pink Guava Juice\n30 ml Orange Juice\n15 ml Lemonade Mix Syrup\n10 ml Fresh Lime Juice\nSoda Water\nGarnish: Orange slice and mint" },
-    { name: "Tropical Testimony", image: "images/tropicaltestimony.jpg", recipe: "60 ml Mango Juice\n40 ml Orange Juice\n15 ml Pineapple Syrup\n15 ml Green Apple Syrup\n10 ml Fresh Lime Juice\nSoda Water\nGarnish: Mint sprig and a lime wedge" },
-    { name: "Citrus Christ", image: "images/citruschrist.jpg", recipe: "50 ml Orange Juice\n30 ml Lemonade Mix Syrup\n10 ml Lime Juice\n10 ml Grenadine\nSoda Water\nGarnish: Frozen berries and lime wedge" },
+    { name: "Amazing Guava Grace", image: "https://github.com/shaeigw/christian-cocktail-night/blob/main/AmazingGuavaGrace.jpg?raw=true", recipe: "60 ml Pink Guava Juice\n30 ml Orange Juice\n15 ml Lemonade Mix Syrup\n10 ml Fresh Lime Juice\nSoda Water\nGarnish: Orange slice and mint" },
+    { name: "Tropical Testimony", image: "https://github.com/shaeigw/christian-cocktail-night/blob/main/TropicalTestimony.jpg", recipe: "60 ml Mango Juice\n40 ml Orange Juice\n15 ml Pineapple Syrup\n15 ml Green Apple Syrup\n10 ml Fresh Lime Juice\nSoda Water\nGarnish: Mint sprig and a lime wedge" },
+    { name: "Citrus Christ", image: "https://github.com/shaeigw/christian-cocktail-night/blob/main/CitrusChrist.jpg", recipe: "50 ml Orange Juice\n30 ml Lemonade Mix Syrup\n10 ml Lime Juice\n10 ml Grenadine\nSoda Water\nGarnish: Frozen berries and lime wedge" },
 ];
 
 const menuGrid = document.getElementById('menuGrid');
