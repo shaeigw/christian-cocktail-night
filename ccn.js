@@ -1,5 +1,5 @@
 const drinks = [
-    { name: "Living Waters", image: "LivingWaters.jpg", recipe: "50 ml Orange Juice\n15 ml Blue Curacao Syrup (last)\n15 ml Lemonade Mix Syrup\n10 ml Fresh Lime Juice (optional)\nSoda Water to fill up to 400 ml\nGarnish: Fresh mint and an orange slice" },
+    { name: "Living Waters", image: "https://raw.githubusercontent.com/shaeigw/christian-cocktail-night/refs/heads/main/LivingWaters.jpg", recipe: "50 ml Orange Juice\n15 ml Blue Curacao Syrup (last)\n15 ml Lemonade Mix Syrup\n10 ml Fresh Lime Juice (optional)\nSoda Water to fill up to 400 ml\nGarnish: Fresh mint and an orange slice" },
     { name: "Very Berry Blessed", image: "veryberryblessed.jpg", recipe: "80 ml Strawberry Juice\n15 ml Grenadine Syrup\n10 ml Bitter Lemon Syrup\n10 ml Fresh Lime Juice\nSoda Water\nGarnish: Frozen berries and mint sprig" },
     { name: "Heavenly Harmony", image: "heavenlyharmony.jpg", recipe: "80 ml Strawberry Juice\n15 ml Blue Curacao Syrup\n15 ml Lemonade Mix Syrup\n10 ml Fresh Lime Juice\nSoda Water\nOptional: 10 ml Ginger Ale Syrup\nGarnish: Fresh mint sprig and frozen berries" },
     { name: "Garden of Eden", image: "gardenofeden.jpg", recipe: "60 ml Mango Juice\n40 ml Orange Juice\n15 ml Pineapple Syrup\n10 ml Blue Curacao Syrup\n10 ml Fresh Lime Juice\n10 ml Bitter Lemon Syrup\nSoda Water\nGarnish: Mint leaves and frozen berries" },
