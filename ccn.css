@@ -12,8 +12,20 @@ h1 {
     font-size: 60px;
     margin-bottom: 40px;
 }
+.verse {
+    font-family: Thin;
+    font-size: 21px;
+    margin-bottom: 90px;
+}
+
+.card-content .description {
+    font-family: Thin;
+    font-size: 17px;
+    margin: 10px 0;
+}
+
 .menu-title {
-    font-size: 36px;
+    font-size: 40px;
     margin-bottom: 40px;
 }
 
@@ -59,16 +71,17 @@ h1 {
 
 .click-instruction {
     color: #555;
-    font-size: 14px;
+    font-size: 6px;
 }
 
 .recipe {
+    font-family: Thin;
     display: none;
     padding: 15px;
     border-top: 1px solid #ddd;
     background: #fafafa;
-    font-size: 14px;
-    text-align: left;
+    font-size: 16px;
+    text-align: center;
 }
 
 .card.open .recipe {
