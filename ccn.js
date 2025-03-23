@@ -87,8 +87,7 @@ document.getElementById("submitOrder").addEventListener("click", () => {
 
   emailjs.send("service_yngam5u", "template_ojizg2i", {
     name: name,
-    drink: selectedDrink,
-    email: "sharondigwe@gmail.com"
+    drink: selectedDrink
   }).then(() => {
     alert("Order sent!");
     popupEl.classList.add("hidden");
