@@ -85,7 +85,7 @@ document.getElementById("submitOrder").addEventListener("click", () => {
   const name = userNameInput.value.trim();
   if (!name) return alert("Please enter your name.");
 
-  emailjs.send("service_yngam5u", "template_0m0kemx", {
+  emailjs.send("service_yngam5u", "template_ojizg2i", {
     name: name,
     drink: selectedDrink,
     email: "sharondigwe@gmail.com"
