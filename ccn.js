@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", function () {
+  // === Menü und Rezeptanzeige ===
 const drinks = [
      { name: "Living Waters", image: "https://raw.githubusercontent.com/shaeigw/christian-cocktail-night/refs/heads/main/LivingWaters.jpg", description: 'A refreshing blend of orange juice, blue curacao, lemonade syrup, and soda water, finished with mint and an orange slice.', recipe: "50 ml Orange Juice\n15 ml Blue Curacao Syrup (last)\n15 ml Lemonade Mix Syrup\n10 ml Fresh Lime Juice (optional)\nSoda Water to fill up to 400 ml\nGarnish: Fresh mint and an orange slice" },
      { name: "Very Berry Blessed", image: "https://raw.githubusercontent.com/shaeigw/christian-cocktail-night/refs/heads/main/VeryBerryBlessed.jpg", description: 'A sweet and tart strawberry juice mocktail with grenadine, bitter lemon, lime juice, and soda water, garnished with frozen berries and mint.', recipe: "80 ml Strawberry Juice\n15 ml Grenadine Syrup\n10 ml Bitter Lemon Syrup\n10 ml Fresh Lime Juice\nSoda Water\nGarnish: Frozen berries and mint sprig" },
@@ -14,91 +16,107 @@ const drinks = [
      { name: "Citrus Christ", image: "https://raw.githubusercontent.com/shaeigw/christian-cocktail-night/refs/heads/main/CitrusChrist.jpg", description: 'A zesty mix of orange juice, lemonade mix syrup, lime juice, grenadine, and soda water, garnished with frozen berries and a lime wedge.', recipe: "50 ml Orange Juice\n30 ml Lemonade Mix Syrup\n10 ml Lime Juice\n10 ml Grenadine\nSoda Water\nGarnish: Frozen berries and lime wedge" },
      
  ];
-const menuGrid = document.getElementById('menuGrid');
 
-menuGrid.innerHTML = '<h2 class="menu-title"><span class="script">The</span> Mocktail Menu</h2>';
+     const menuGrid = document.getElementById('menuGrid');
+  menuGrid.innerHTML = `<h2 class="menu-title"><span class="script">The</span> Mocktail Menu</h2>`;
 
-drinks.forEach(drink => {
+  drinks.forEach(drink => {
     const card = document.createElement('div');
     card.classList.add('card');
-
     card.innerHTML = `
-        <img src="${drink.image}" alt="${drink.name}">
-        
-        <div class="card-content">
-            
-            <h2>${drink.name}</h2>
-            <p class="description">${drink.description}</p>
-            <p class="click-instruction">Click for recipe</p>
-            
-        </div>
-        <div class="recipe">
+      <img src="${drink.image}" alt="${drink.name}">
+      <div class="card-content">
+        <h2>${drink.name}</h2>
+        <p class="description">${drink.description}</p>
+        <p class="click-instruction">Click for recipe</p>
+      </div>
+      <div class="recipe">
         ${drink.recipe.replace(/\n/g, '<br>')}
         <br/>
         <button class="order-button" data-drink="${drink.name}">Order</button>
-        </div>
+      </div>
     `;
-
     card.addEventListener('click', () => card.classList.toggle('open'));
-
     menuGrid.appendChild(card);
-});
+  });
 
-// EmailJS init
-emailjs.init("hXPDQPliREUdY3cA0");
+  // === Popup für Bestellungen ===
+  // Das Popup erscheint, wenn im aufgeklappten Rezept "Order" geklickt wird
+  const popup = document.createElement("div");
+  popup.id = "orderPopup";
+  popup.className = "popup hidden";
+  popup.innerHTML = `
+    <div class="popup-content">
+      <h3>Bestellung für <span id="drinkNameSpan"></span></h3>
+      <input type="text" id="userNameInput" placeholder="Dein Name" />
+      <button id="submitOrder">Bestellen</button>
+      <button id="cancelOrder">Abbrechen</button>
+    </div>
+  `;
+  document.body.appendChild(popup);
 
-// Inject popup HTML into the page
-const popup = document.createElement("div");
-popup.id = "orderPopup";
-popup.className = "popup hidden";
-popup.innerHTML = `
-  <div class="popup-content">
-    <h3>Order <span id="drinkNameSpan"></span></h3>
-    <input type="text" id="userNameInput" placeholder="Enter your name" />
-    <button id="submitOrder">Send Order</button>
-    <button id="cancelOrder">Cancel</button>
-  </div>
-`;
-document.body.appendChild(popup);
+  const popupEl = document.getElementById("orderPopup");
+  const drinkNameSpan = document.getElementById("drinkNameSpan");
+  const userNameInput = document.getElementById("userNameInput");
+  let selectedDrink = "";
 
-// Event handling
-const popupEl = document.getElementById("orderPopup");
-const drinkNameSpan = document.getElementById("drinkNameSpan");
-const userNameInput = document.getElementById("userNameInput");
-let selectedDrink = "";
-
-function showPopup(drinkName) {
-  selectedDrink = drinkName;
-  drinkNameSpan.textContent = drinkName;
-  popupEl.classList.remove("hidden");
-}
-
-document.addEventListener("click", (event) => {
-  if (event.target.classList.contains("order-button")) {
-    const drink = event.target.getAttribute("data-drink");
-    showPopup(drink);
-    event.stopPropagation();
+  function showPopup(drinkName) {
+    selectedDrink = drinkName;
+    drinkNameSpan.textContent = drinkName;
+    popupEl.classList.remove("hidden");
   }
-});
 
-document.getElementById("submitOrder").addEventListener("click", () => {
-  const name = userNameInput.value.trim();
-  if (!name) return alert("Please enter your name.");
+  // Beim Klick auf "Order" im Rezept-Popup anzeigen
+  document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("order-button")) {
+      const drink = event.target.getAttribute("data-drink");
+      showPopup(drink);
+      event.stopPropagation();
+    }
+  });
 
-  emailjs.send("service_yngam5u", "template_ojizg2i", {
-    name: name,
-    drink: selectedDrink
-  }).then(() => {
-    alert("Order sent!");
+  // === Bestellliste und Google Sheets Integration ===
+  // Die Bestellliste ist im HTML als <ul id="orderList"> definiert
+  const orderList = document.getElementById("orderList");
+
+  function addOrderToList(name, drink, timestamp) {
+    if(orderList) {
+      const li = document.createElement("li");
+      li.textContent = `${timestamp} - ${name} bestellte: ${drink}`;
+      orderList.appendChild(li);
+    }
+  }
+
+  function sendOrderToGoogleSheets(name, drink, timestamp) {
+    const googleScriptURL = "https://script.google.com/macros/s/AKfycbzue7f24X-aZhzeGb3NnT5gmnxkGZVdE-DHZDmSNzkhYTxNKj7azTYkdBQrfhM__FR3qQ/exec";
+    fetch(googleScriptURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ name, drink, timestamp })
+    })
+    .then(response => response.text())
+    .then(data => console.log("Bestellung gesendet:", data))
+    .catch(error => console.error("Fehler beim Senden:", error));
+  }
+
+  // Beim Absenden des Bestell-Popup
+  document.getElementById("submitOrder").addEventListener("click", () => {
+    const name = userNameInput.value.trim();
+    if (!name) {
+      alert("Bitte gib deinen Namen ein.");
+      return;
+    }
+    const timestamp = new Date().toLocaleString();
+    addOrderToList(name, selectedDrink, timestamp);
+    sendOrderToGoogleSheets(name, selectedDrink, timestamp);
+    alert("Bestellung erfolgreich!");
     popupEl.classList.add("hidden");
     userNameInput.value = "";
-  }).catch((error) => {
-    alert("Failed to send order.");
-    console.error("EmailJS error:", error);
+  });
+
+  document.getElementById("cancelOrder").addEventListener("click", () => {
+    popupEl.classList.add("hidden");
+    userNameInput.value = "";
   });
 });
 
-document.getElementById("cancelOrder").addEventListener("click", () => {
-  popupEl.classList.add("hidden");
-  userNameInput.value = "";
-});
