@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="ccn.css">
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    
-    <title>Mocktail Menu</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="ccn.css">
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init("tx8pkR_3K7fmreDVk");
+  </script>
+  <title>Mocktail Menu</title>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1> Christian Cocktail Night - Ladies Edition</h1>
-            
-            <p class="verse">So whether you eat or drink or whatever you do, do it all for the glory of God. - 1 Corinthians 10:31</p>
-        </header>
-        <div class="menu-grid" id="menuGrid"></div>
-    </div>
-    <script src="ccn.js"></script>
+  <div class="container">
+    <header>
+      <h1>Christian Cocktail Night - Ladies Edition</h1>
+      <p class="verse">So whether you eat or drink or whatever you do, do it all for the glory of God. - 1 Corinthians 10:31</p>
+    </header>
+    <div class="menu-grid" id="menuGrid"></div>
 
+    <!-- Bestellbereich, in dem alle Bestellungen unten angezeigt werden -->
+    <section class="order-section">
+      <h2>Bestellungen</h2>
+      <ul id="orderList"></ul>
+    </section>
+  </div>
+  <script src="ccn.js"></script>
 </body>
 </html>
