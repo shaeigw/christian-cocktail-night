@@ -88,7 +88,7 @@ const drinks = [
   }
 
   function sendOrderToGoogleSheets(name, drink, timestamp) {
-    const googleScriptURL = "https://script.google.com/macros/s/AKfycbwtS9k0l9Rr6vGpGUqGa-xuMWdkG6WWgC7PfM9-5hnfhFpxyx3cmrAbiFa_76Sv_EQ/exec";
+    const googleScriptURL = "https://script.google.com/macros/s/AKfycbwrp6-obWNV9ImnSYolKkHRBgpV2ykXMV0m5JRMHV5m1RSo-iJqM_ZDzBnf_bPzSAY/exec";
     fetch(googleScriptURL, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
